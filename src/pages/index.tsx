@@ -2,77 +2,18 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Define the types for the props of the Dropdown component
-type DropdownProps = {
-  title: string;
-  options: string[];
-  isOpen: boolean;
-  toggleDropdown: () => void;
-  dropdownRef: React.RefObject<HTMLDivElement | null>;
-};
-
+// Home Component
 export default function Home() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const navRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown when clicking outside the nav area
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const toggleDropdown = (title: string) => {
-    setOpenDropdown(openDropdown === title ? null : title);
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
-      <nav
-        ref={navRef}
-        className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10"
-      >
+      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
         <div className="flex space-x-12 text-gray-700 text-lg">
-          <Dropdown
-            title="About"
-            options={["Mission", "Vision", "Story"]}
-            isOpen={openDropdown === "About"}
-            toggleDropdown={() => toggleDropdown("About")}
-            dropdownRef={useRef<HTMLDivElement | null>(null)}
-          />
-          <Dropdown
-            title="Ingredients"
-            options={["Fruits", "Vegetables", "Spices"]}
-            isOpen={openDropdown === "Ingredients"}
-            toggleDropdown={() => toggleDropdown("Ingredients")}
-            dropdownRef={useRef<HTMLDivElement | null>(null)}
-          />
-          <Dropdown
-            title="Recipes"
-            options={["Main Dishes", "Side Dishes", "Desserts"]}
-            isOpen={openDropdown === "Recipes"}
-            toggleDropdown={() => toggleDropdown("Recipes")}
-            dropdownRef={useRef<HTMLDivElement | null>(null)}
-          />
-          <Dropdown
-            title="Sources"
-            options={["Farmers", "Markets", "Suppliers"]}
-            isOpen={openDropdown === "Sources"}
-            toggleDropdown={() => toggleDropdown("Sources")}
-            dropdownRef={useRef<HTMLDivElement | null>(null)}
-          />
-          <Dropdown
-            title="News"
-            options={["Updates", "Events", "Articles"]}
-            isOpen={openDropdown === "News"}
-            toggleDropdown={() => toggleDropdown("News")}
-            dropdownRef={useRef<HTMLDivElement | null>(null)}
-          />
+          <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
+          <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
+          <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
+          <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
+          <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
         </div>
       </nav>
 
@@ -90,19 +31,13 @@ export default function Home() {
       <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
         {/* Text Content */}
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
-          <h3 className="text-4xl font-semibold mb-4">
-            Why Choose Local Ingredients?
-          </h3>
+          <h3 className="text-4xl font-semibold mb-4">Why Choose Local Ingredients?</h3>
           <p>
-            Locally sourced ingredients offer unparalleled freshness and flavor
-            while supporting small businesses and reducing environmental impact.
-            Every meal tells a story of community and sustainability.
+            Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact. Every meal tells a story of community and sustainability.
           </p>
           <h3 className="text-4xl font-semibold mt-8">Our Mission</h3>
           <p>
-            Qookbook is a community-driven initiative celebrating the essence of
-            home-cooked meals, connecting food lovers with sustainable sources and
-            supporting local businesses to make the world taste better.
+            Qookbook is a community-driven initiative celebrating the essence of home-cooked meals, connecting food lovers with sustainable sources and supporting local businesses to make the world taste better.
           </p>
         </div>
         {/* Image Section */}
@@ -145,32 +80,55 @@ export default function Home() {
   );
 }
 
-// Dropdown component for navigation
-function Dropdown({
-  title,
-  options,
-  isOpen,
-  toggleDropdown,
-  dropdownRef,
-}: DropdownProps) {
+// Dropdown Component
+function Dropdown({ title, options }: { title: string; options: string[] }) {
+  // Local state for hover and click
+  const [hoverOpen, setHoverOpen] = useState(false);
+  const [clickedOpen, setClickedOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Combine states: dropdown is open if hovered or clicked
+  const isOpen = hoverOpen || clickedOpen;
+
+  // Handle click outside for this dropdown instance
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setClickedOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div
-      ref={dropdownRef}
-      className="relative"
-      onMouseEnter={toggleDropdown}
-      onMouseLeave={toggleDropdown}
-      onClick={toggleDropdown}
+      ref={containerRef}
+      className="relative inline-block"
+      // Set hover events on the container to open dropdown
+      onMouseEnter={() => setHoverOpen(true)}
+      onMouseLeave={() => setHoverOpen(false)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setClickedOpen((prev) => !prev);
+      }}
     >
       <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0.5 p-4 w-40 text-gray-700">
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
                 <Link href="#">
-                  <a className="block px-4 py-2 hover:text-[#FF8C94]">{option}</a>
+                  <a className="block px-4 py-2 hover:text-[#FF8C94]">
+                    {option}
+                  </a>
                 </Link>
               </li>
             ))}
