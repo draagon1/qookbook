@@ -127,7 +127,7 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
             {options.map((option, index) => (
               <li key={index}>
                 {/* Link for Main Dishes */}
-                <Link href={option === "Main Dishes" ? "/main-dishes" : "#"}>
+                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
                   <a className="block px-4 py-2 hover:text-[#FF8C94]">
                     {option}
                   </a>
