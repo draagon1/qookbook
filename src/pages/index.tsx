@@ -6,28 +6,39 @@ import Link from "next/link";
 type DropdownProps = {
   title: string;
   options: string[];
-  openDropdown: string | null;
-  handleDropdownToggle: (title: string) => void;
+  isOpen: boolean;
+  toggleDropdown: () => void;
   dropdownRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isInView, setIsInView] = useState(false); // To track visibility of the dropdown
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // Close dropdown if clicked outside
+  // Use IntersectionObserver to detect if dropdown is in view
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting); // Set state if dropdown is in view
+      },
+      { threshold: 0.5 } // Trigger when 50% of the dropdown is in view
+    );
+    
+    if (dropdownRef.current) {
+      observer.observe(dropdownRef.current);
+    }
+
+    return () => {
+      if (dropdownRef.current) {
+        observer.unobserve(dropdownRef.current);
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleDropdownToggle = (title: string) => {
+  // Toggle dropdown visibility
+  const toggleDropdown = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
   };
 
@@ -39,36 +50,36 @@ export default function Home() {
           <Dropdown
             title="About"
             options={["Mission", "Vision", "Story"]}
-            openDropdown={openDropdown}
-            handleDropdownToggle={handleDropdownToggle}
+            isOpen={openDropdown === "About"}
+            toggleDropdown={() => toggleDropdown("About")}
             dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Ingredients"
             options={["Fruits", "Vegetables", "Spices"]}
-            openDropdown={openDropdown}
-            handleDropdownToggle={handleDropdownToggle}
+            isOpen={openDropdown === "Ingredients"}
+            toggleDropdown={() => toggleDropdown("Ingredients")}
             dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Recipes"
             options={["Main Dishes", "Side Dishes", "Desserts"]}
-            openDropdown={openDropdown}
-            handleDropdownToggle={handleDropdownToggle}
+            isOpen={openDropdown === "Recipes"}
+            toggleDropdown={() => toggleDropdown("Recipes")}
             dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Sources"
             options={["Farmers", "Markets", "Suppliers"]}
-            openDropdown={openDropdown}
-            handleDropdownToggle={handleDropdownToggle}
+            isOpen={openDropdown === "Sources"}
+            toggleDropdown={() => toggleDropdown("Sources")}
             dropdownRef={dropdownRef}
           />
           <Dropdown
             title="News"
             options={["Updates", "Events", "Articles"]}
-            openDropdown={openDropdown}
-            handleDropdownToggle={handleDropdownToggle}
+            isOpen={openDropdown === "News"}
+            toggleDropdown={() => toggleDropdown("News")}
             dropdownRef={dropdownRef}
           />
         </div>
@@ -105,25 +116,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Additional Images Section */}
-      <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
-        <div className="flex justify-center items-center flex-1">
-          <Image
-            src="/images/farm-fresh.jpg"
-            alt="Farm Fresh Ingredients"
-            width={600}
-            height={600}
-            className="rounded-lg shadow-lg hover:scale-105 transition duration-300"
-          />
-        </div>
-        <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
-          <h3 className="text-4xl font-semibold">Fresh from the Farm</h3>
-          <p>
-            Discover the best locally grown ingredients that elevate your cooking experience. Our mission is to make farm-to-table accessible, fresh, and sustainable.
-          </p>
-        </div>
-      </div>
-
       {/* Bottom Banner Image */}
       <div className="mt-16 w-full flex justify-center">
         <Image
@@ -156,22 +148,20 @@ export default function Home() {
 function Dropdown({
   title,
   options,
-  openDropdown,
-  handleDropdownToggle,
+  isOpen,
+  toggleDropdown,
   dropdownRef,
 }: DropdownProps) {
   return (
     <div
       ref={dropdownRef}
-      className="relative group"
-      onMouseEnter={() => handleDropdownToggle(title)}
-      onMouseLeave={() => handleDropdownToggle(title)}
-      onClick={() => handleDropdownToggle(title)}
+      className={`relative group ${isOpen ? "z-10" : "z-0"}`}
+      onClick={toggleDropdown}
     >
       <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
-      {openDropdown === title && (
+      {(isOpen || isInView) && (
         <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
