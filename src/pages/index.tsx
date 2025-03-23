@@ -1,6 +1,6 @@
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 // Define the types for the props of the Dropdown component
 type DropdownProps = {
@@ -10,6 +10,19 @@ type DropdownProps = {
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null); // Close the dropdown if clicking outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleDropdownToggle = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
@@ -25,30 +38,35 @@ export default function Home() {
             options={["Mission", "Vision", "Story"]}
             openDropdown={openDropdown}
             handleDropdownToggle={handleDropdownToggle}
+            dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Ingredients"
             options={["Fruits", "Vegetables", "Spices"]}
             openDropdown={openDropdown}
             handleDropdownToggle={handleDropdownToggle}
+            dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Recipes"
             options={["Main Dishes", "Side Dishes", "Desserts"]}
             openDropdown={openDropdown}
             handleDropdownToggle={handleDropdownToggle}
+            dropdownRef={dropdownRef}
           />
           <Dropdown
             title="Sources"
             options={["Farmers", "Markets", "Suppliers"]}
             openDropdown={openDropdown}
             handleDropdownToggle={handleDropdownToggle}
+            dropdownRef={dropdownRef}
           />
           <Dropdown
             title="News"
             options={["Updates", "Events", "Articles"]}
             openDropdown={openDropdown}
             handleDropdownToggle={handleDropdownToggle}
+            dropdownRef={dropdownRef}
           />
         </div>
       </nav>
@@ -131,9 +149,11 @@ function Dropdown({
   options,
   openDropdown,
   handleDropdownToggle,
-}: DropdownProps & { openDropdown: string | null; handleDropdownToggle: (title: string) => void }) {
+  dropdownRef,
+}: DropdownProps & { openDropdown: string | null; handleDropdownToggle: (title: string) => void; dropdownRef: React.RefObject<HTMLDivElement> }) {
   return (
     <div
+      ref={dropdownRef}
       className="relative group"
       onClick={() => handleDropdownToggle(title)}
     >
