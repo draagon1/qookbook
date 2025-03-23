@@ -9,11 +9,12 @@ type DropdownProps = {
   isOpen: boolean;
   toggleDropdown: () => void;
   dropdownRef: React.RefObject<HTMLDivElement | null>;
+  isInView: boolean; // Added isInView as a prop
 };
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [isInView, setIsInView] = useState(false); // To track visibility of the dropdown
+  const [isInView, setIsInView] = useState(false); // Track visibility of the dropdown
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -53,6 +54,7 @@ export default function Home() {
             isOpen={openDropdown === "About"}
             toggleDropdown={() => toggleDropdown("About")}
             dropdownRef={dropdownRef}
+            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Ingredients"
@@ -60,6 +62,7 @@ export default function Home() {
             isOpen={openDropdown === "Ingredients"}
             toggleDropdown={() => toggleDropdown("Ingredients")}
             dropdownRef={dropdownRef}
+            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Recipes"
@@ -67,6 +70,7 @@ export default function Home() {
             isOpen={openDropdown === "Recipes"}
             toggleDropdown={() => toggleDropdown("Recipes")}
             dropdownRef={dropdownRef}
+            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Sources"
@@ -74,6 +78,7 @@ export default function Home() {
             isOpen={openDropdown === "Sources"}
             toggleDropdown={() => toggleDropdown("Sources")}
             dropdownRef={dropdownRef}
+            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="News"
@@ -81,6 +86,7 @@ export default function Home() {
             isOpen={openDropdown === "News"}
             toggleDropdown={() => toggleDropdown("News")}
             dropdownRef={dropdownRef}
+            isInView={isInView} // Pass isInView here
           />
         </div>
       </nav>
@@ -151,6 +157,7 @@ function Dropdown({
   isOpen,
   toggleDropdown,
   dropdownRef,
+  isInView,
 }: DropdownProps) {
   return (
     <div
