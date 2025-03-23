@@ -1,0 +1,90 @@
+import { useState } from "react";
+
+const dishes = [
+  {
+    name: "Grilled Chicken & Vegetables Rice",
+    image: "path/to/grilled-chicken.jpg",
+    ingredients: [
+      "2 chicken breasts",
+      "1 cup rice",
+      "1 cup mixed vegetables",
+      "2 tbsp olive oil",
+      "Salt and pepper to taste",
+    ],
+    steps: [
+      "Season the chicken with salt, pepper, and olive oil.",
+      "Grill the chicken on medium heat until fully cooked.",
+      "Cook the rice separately according to the package instructions.",
+      "Sauté the vegetables in a pan with olive oil until tender.",
+      "Mix everything together and serve warm.",
+    ],
+  },
+  {
+    name: "Homemade Pasta with Tomato Sauce",
+    image: "path/to/pasta.jpg",
+    ingredients: [
+      "2 cups flour",
+      "2 eggs",
+      "1/2 tsp salt",
+      "1 cup tomato sauce",
+      "1 tbsp olive oil",
+    ],
+    steps: [
+      "Mix flour, eggs, and salt to form a dough.",
+      "Roll out and cut into pasta shapes.",
+      "Boil in salted water until tender.",
+      "Heat tomato sauce in a pan and add the cooked pasta.",
+      "Toss together and serve.",
+    ],
+  },
+  // Add more dishes here following the same structure
+];
+
+export default function MainDishes() {
+  const [openDish, setOpenDish] = useState(null);
+
+  const toggleDish = (index) => {
+    setOpenDish(openDish === index ? null : index);
+  };
+
+  return (
+    <div className="p-6">
+      <h1 className="text-3xl font-bold mb-4">Main Dishes</h1>
+      <div className="space-y-4">
+        {dishes.map((dish, index) => (
+          <div key={index} className="border rounded-lg shadow-md p-4">
+            <button
+              onClick={() => toggleDish(index)}
+              className="w-full text-left font-semibold text-lg flex justify-between items-center"
+            >
+              {dish.name}
+              <span>{openDish === index ? "▲" : "▼"}</span>
+            </button>
+            {openDish === index && (
+              <div className="mt-4">
+                <img
+                  src={dish.image}
+                  alt={dish.name}
+                  className="w-full rounded-lg mb-4"
+                />
+                <h2 className="text-xl font-semibold">Ingredients</h2>
+                <ul className="list-disc list-inside mb-4">
+                  {dish.ingredients.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+                <h2 className="text-xl font-semibold">Cooking Steps</h2>
+                <ol className="list-decimal list-inside">
+                  {dish.steps.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
