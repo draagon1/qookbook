@@ -9,16 +9,47 @@ type DropdownProps = {
 };
 
 export default function Home() {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const handleDropdownToggle = (title: string) => {
+    setOpenDropdown(openDropdown === title ? null : title);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
         <div className="flex space-x-12 text-gray-700 text-lg">
-          <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
-          <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
-          <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
-          <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
-          <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
+          <Dropdown
+            title="About"
+            options={["Mission", "Vision", "Story"]}
+            openDropdown={openDropdown}
+            handleDropdownToggle={handleDropdownToggle}
+          />
+          <Dropdown
+            title="Ingredients"
+            options={["Fruits", "Vegetables", "Spices"]}
+            openDropdown={openDropdown}
+            handleDropdownToggle={handleDropdownToggle}
+          />
+          <Dropdown
+            title="Recipes"
+            options={["Main Dishes", "Side Dishes", "Desserts"]}
+            openDropdown={openDropdown}
+            handleDropdownToggle={handleDropdownToggle}
+          />
+          <Dropdown
+            title="Sources"
+            options={["Farmers", "Markets", "Suppliers"]}
+            openDropdown={openDropdown}
+            handleDropdownToggle={handleDropdownToggle}
+          />
+          <Dropdown
+            title="News"
+            options={["Updates", "Events", "Articles"]}
+            openDropdown={openDropdown}
+            handleDropdownToggle={handleDropdownToggle}
+          />
         </div>
       </nav>
 
@@ -39,14 +70,26 @@ export default function Home() {
         </div>
         {/* Image Section */}
         <div className="flex justify-center items-center flex-1">
-          <Image src="/images/food-table.jpg" alt="Food Table" width={600} height={600} className="rounded-lg shadow-lg" />
+          <Image
+            src="/images/food-table.jpg"
+            alt="Food Table"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-lg hover:scale-105 transition duration-300"
+          />
         </div>
       </div>
 
       {/* Additional Images Section */}
       <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
         <div className="flex justify-center items-center flex-1">
-          <Image src="/images/farm-fresh.jpg" alt="Farm Fresh Ingredients" width={600} height={600} className="rounded-lg shadow-lg" />
+          <Image
+            src="/images/farm-fresh.jpg"
+            alt="Farm Fresh Ingredients"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-lg hover:scale-105 transition duration-300"
+          />
         </div>
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
           <h3 className="text-4xl font-semibold">Fresh from the Farm</h3>
@@ -56,7 +99,13 @@ export default function Home() {
 
       {/* Bottom Banner Image */}
       <div className="mt-16 w-full flex justify-center">
-        <Image src="/images/ingredients.jpg" alt="Fresh Ingredients" width={900} height={450} className="rounded-lg shadow-md" />
+        <Image
+          src="/images/ingredients.jpg"
+          alt="Fresh Ingredients"
+          width={900}
+          height={450}
+          className="rounded-lg shadow-md hover:scale-105 transition duration-300"
+        />
       </div>
 
       {/* "Start Cooking Today" Button */}
@@ -77,19 +126,25 @@ export default function Home() {
 }
 
 // Dropdown component for navigation
-function Dropdown({ title, options }: DropdownProps) {
-  const [open, setOpen] = useState(false);
-
+function Dropdown({
+  title,
+  options,
+  openDropdown,
+  handleDropdownToggle,
+}: DropdownProps & { openDropdown: string | null; handleDropdownToggle: (title: string) => void }) {
   return (
-    <div className="relative">
+    <div
+      className="relative group"
+      onMouseEnter={() => handleDropdownToggle(title)}
+      onMouseLeave={() => handleDropdownToggle(title)}
+    >
       <button
-        onClick={() => setOpen(!open)}
         className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none"
       >
         {title}
       </button>
-      {open && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
+      {(openDropdown === title || openDropdown === null) && (
+        <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700 group-hover:block hidden">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
