@@ -8,18 +8,18 @@ type DropdownProps = {
   options: string[];
   openDropdown: string | null;
   handleDropdownToggle: (title: string) => void;
-  dropdownRef: React.RefObject<HTMLDivElement>;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Explicitly define as HTMLDivElement | null
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Close dropdown if clicked outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null); // Close the dropdown if clicking outside
+        setOpenDropdown(null);
       }
     };
 
@@ -85,9 +85,13 @@ export default function Home() {
         {/* Text Content */}
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
           <h3 className="text-4xl font-semibold mb-4">Why Choose Local Ingredients?</h3>
-          <p>Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact. Every meal tells a story of community and sustainability.</p>
+          <p>
+            Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact. Every meal tells a story of community and sustainability.
+          </p>
           <h3 className="text-4xl font-semibold mt-8">Our Mission</h3>
-          <p>Qookbook is a community-driven initiative celebrating the essence of home-cooked meals, connecting food lovers with sustainable sources and supporting local businesses to make the world taste better.</p>
+          <p>
+            Qookbook is a community-driven initiative celebrating the essence of home-cooked meals, connecting food lovers with sustainable sources and supporting local businesses to make the world taste better.
+          </p>
         </div>
         {/* Image Section */}
         <div className="flex justify-center items-center flex-1">
@@ -114,7 +118,9 @@ export default function Home() {
         </div>
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
           <h3 className="text-4xl font-semibold">Fresh from the Farm</h3>
-          <p>Discover the best locally grown ingredients that elevate your cooking experience. Our mission is to make farm-to-table accessible, fresh, and sustainable.</p>
+          <p>
+            Discover the best locally grown ingredients that elevate your cooking experience. Our mission is to make farm-to-table accessible, fresh, and sustainable.
+          </p>
         </div>
       </div>
 
@@ -158,14 +164,14 @@ function Dropdown({
     <div
       ref={dropdownRef}
       className="relative group"
+      onMouseEnter={() => handleDropdownToggle(title)}
+      onMouseLeave={() => handleDropdownToggle(title)}
       onClick={() => handleDropdownToggle(title)}
     >
-      <button
-        className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none"
-      >
+      <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
-      {(openDropdown === title) && (
+      {openDropdown === title && (
         <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
