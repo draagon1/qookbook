@@ -1,55 +1,177 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-const DropdownMenu = ({ title, options }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const buttonRef = useRef(null);
+// Define the types for the props of the Dropdown component
+type DropdownProps = {
+  title: string;
+  options: string[];
+  isOpen: boolean;
+  toggleDropdown: () => void;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
+};
 
-  const handleDropdownToggle = () => {
-    setIsOpen((prev) => !prev);
-  };
+export default function Home() {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsOpen(false);
-  };
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !buttonRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
+  // Close dropdown when clicking outside the nav area
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
     };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const toggleDropdown = (title: string) => {
+    setOpenDropdown(openDropdown === title ? null : title);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
+      {/* Navigation Bar */}
+      <nav
+        ref={navRef}
+        className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10"
+      >
+        <div className="flex space-x-12 text-gray-700 text-lg">
+          <Dropdown
+            title="About"
+            options={["Mission", "Vision", "Story"]}
+            isOpen={openDropdown === "About"}
+            toggleDropdown={() => toggleDropdown("About")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
+          />
+          <Dropdown
+            title="Ingredients"
+            options={["Fruits", "Vegetables", "Spices"]}
+            isOpen={openDropdown === "Ingredients"}
+            toggleDropdown={() => toggleDropdown("Ingredients")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
+          />
+          <Dropdown
+            title="Recipes"
+            options={["Main Dishes", "Side Dishes", "Desserts"]}
+            isOpen={openDropdown === "Recipes"}
+            toggleDropdown={() => toggleDropdown("Recipes")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
+          />
+          <Dropdown
+            title="Sources"
+            options={["Farmers", "Markets", "Suppliers"]}
+            isOpen={openDropdown === "Sources"}
+            toggleDropdown={() => toggleDropdown("Sources")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
+          />
+          <Dropdown
+            title="News"
+            options={["Updates", "Events", "Articles"]}
+            isOpen={openDropdown === "News"}
+            toggleDropdown={() => toggleDropdown("News")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
+          />
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="mt-24 text-center max-w-4xl p-8">
+        <h2 className="text-6xl font-extrabold leading-tight">
+          Explore Authentic Local Cuisine
+        </h2>
+        <p className="text-2xl mt-4">
+          Bringing fresh, locally sourced ingredients to your kitchen with love.
+        </p>
+      </section>
+
+      {/* Main Content */}
+      <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
+        {/* Text Content */}
+        <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
+          <h3 className="text-4xl font-semibold mb-4">
+            Why Choose Local Ingredients?
+          </h3>
+          <p>
+            Locally sourced ingredients offer unparalleled freshness and flavor
+            while supporting small businesses and reducing environmental impact.
+            Every meal tells a story of community and sustainability.
+          </p>
+          <h3 className="text-4xl font-semibold mt-8">Our Mission</h3>
+          <p>
+            Qookbook is a community-driven initiative celebrating the essence of
+            home-cooked meals, connecting food lovers with sustainable sources and
+            supporting local businesses to make the world taste better.
+          </p>
+        </div>
+        {/* Image Section */}
+        <div className="flex justify-center items-center flex-1">
+          <Image
+            src="/images/food-table.jpg"
+            alt="Food Table"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-lg hover:scale-105 transition duration-300"
+          />
+        </div>
+      </div>
+
+      {/* Bottom Banner Image */}
+      <div className="mt-16 w-full flex justify-center">
+        <Image
+          src="/images/ingredients.jpg"
+          alt="Fresh Ingredients"
+          width={900}
+          height={450}
+          className="rounded-lg shadow-md hover:scale-105 transition duration-300"
+        />
+      </div>
+
+      {/* "Start Cooking Today" Button */}
+      <div className="mt-12 text-center">
+        <Link href="#recipes">
+          <a className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300">
+            Start Cooking Today
+          </a>
+        </Link>
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-16 text-center text-lg text-gray-500 pb-12">
+        <p>Made with ❤️ by Qookbook</p>
+      </footer>
+    </div>
+  );
+}
+
+// Dropdown component for navigation
+function Dropdown({
+  title,
+  options,
+  isOpen,
+  toggleDropdown,
+  dropdownRef,
+}: DropdownProps) {
   return (
     <div
       ref={dropdownRef}
-      className="relative inline-block"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="relative"
+      onMouseEnter={toggleDropdown}
+      onMouseLeave={toggleDropdown}
+      onClick={toggleDropdown}
     >
-      <button
-        ref={buttonRef}
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-        onClick={handleDropdownToggle}
-      >
+      <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700">
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0.5 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
-              <li key={index} className="py-1 px-2 hover:bg-gray-200 cursor-pointer">
-                {option}
+              <li key={index}>
+                <Link href="#">
+                  <a className="block px-4 py-2 hover:text-[#FF8C94]">{option}</a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -57,18 +179,4 @@ const DropdownMenu = ({ title, options }) => {
       )}
     </div>
   );
-};
-
-const App = () => {
-  const options = ['Option 1', 'Option 2', 'Option 3'];
-
-  return (
-    <div>
-      <DropdownMenu title="Dropdown 1" options={options} />
-      <DropdownMenu title="Dropdown 2" options={options} />
-      <DropdownMenu title="Dropdown 3" options={options} />
-    </div>
-  );
-};
-
-export default App;
+}
