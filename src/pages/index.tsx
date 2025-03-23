@@ -1,17 +1,17 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center">
-      {/* Navigation Bar */}
+      {/* Navigation Bar with Dropdown */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
-        <div className="flex space-x-12 text-gray-700 text-lg">
+        <div className="relative flex space-x-12 text-gray-700 text-lg">
           <NavItem title="About" />
           <NavItem title="Ingredients" />
           <NavItem title="Recipes" />
           <NavItem title="Sources" />
+          <DropdownMenu />
           <NavItem title="News" />
         </div>
       </nav>
@@ -98,3 +98,40 @@ function NavItem({ title }: { title: string }) {
   );
 }
 
+// Dropdown Menu Component
+function DropdownMenu() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer"
+      >
+        Menu
+      </button>
+      {open && (
+        <div className="absolute top-12 left-0 w-48 bg-white shadow-md rounded-lg">
+          <a
+            href="#"
+            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Option 1
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Option 2
+          </a>
+          <a
+            href="#"
+            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+          >
+            Option 3
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
