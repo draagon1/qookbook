@@ -2,36 +2,33 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Global type for dropdown state
-type DropdownState = {
-  title: string;
-  clicked: boolean;
-} | null;
-
-// Props for each Dropdown component
+// Define the types for the props of the Dropdown component
 type DropdownProps = {
   title: string;
   options: string[];
-  dropdownState: DropdownState;
-  setDropdownState: React.Dispatch<React.SetStateAction<DropdownState>>;
+  isOpen: boolean;
+  toggleDropdown: () => void;
+  dropdownRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export default function Home() {
-  // Global dropdown state: which dropdown is active and whether it was clicked
-  const [dropdownState, setDropdownState] = useState<DropdownState>(null);
-  // Ref for the navigation container
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside the nav
+  // Close dropdown when clicking outside the nav area
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        setDropdownState(null);
+        setOpenDropdown(null);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const toggleDropdown = (title: string) => {
+    setOpenDropdown(openDropdown === title ? null : title);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
@@ -44,32 +41,37 @@ export default function Home() {
           <Dropdown
             title="About"
             options={["Mission", "Vision", "Story"]}
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
+            isOpen={openDropdown === "About"}
+            toggleDropdown={() => toggleDropdown("About")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
           />
           <Dropdown
             title="Ingredients"
             options={["Fruits", "Vegetables", "Spices"]}
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
+            isOpen={openDropdown === "Ingredients"}
+            toggleDropdown={() => toggleDropdown("Ingredients")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
           />
           <Dropdown
             title="Recipes"
             options={["Main Dishes", "Side Dishes", "Desserts"]}
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
+            isOpen={openDropdown === "Recipes"}
+            toggleDropdown={() => toggleDropdown("Recipes")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
           />
           <Dropdown
             title="Sources"
             options={["Farmers", "Markets", "Suppliers"]}
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
+            isOpen={openDropdown === "Sources"}
+            toggleDropdown={() => toggleDropdown("Sources")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
           />
           <Dropdown
             title="News"
             options={["Updates", "Events", "Articles"]}
-            dropdownState={dropdownState}
-            setDropdownState={setDropdownState}
+            isOpen={openDropdown === "News"}
+            toggleDropdown={() => toggleDropdown("News")}
+            dropdownRef={useRef<HTMLDivElement | null>(null)}
           />
         </div>
       </nav>
@@ -147,45 +149,23 @@ export default function Home() {
 function Dropdown({
   title,
   options,
-  dropdownState,
-  setDropdownState,
+  isOpen,
+  toggleDropdown,
+  dropdownRef,
 }: DropdownProps) {
-  const isActive = dropdownState?.title === title;
-  const isClicked = dropdownState?.clicked;
-
-  // Handler for hover: only affect dropdown if not clicked
-  const handleMouseEnter = () => {
-    if (!isClicked) {
-      setDropdownState({ title, clicked: false });
-    }
-  };
-  const handleMouseLeave = () => {
-    if (!isClicked) {
-      setDropdownState(null);
-    }
-  };
-
-  // Handler for click: toggle clicked state
-  const handleClick = () => {
-    if (isActive && isClicked) {
-      setDropdownState(null);
-    } else {
-      setDropdownState({ title, clicked: true });
-    }
-  };
-
   return (
     <div
+      ref={dropdownRef}
       className="relative"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
+      onMouseEnter={toggleDropdown}
+      onMouseLeave={toggleDropdown}
+      onClick={toggleDropdown}
     >
       <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
-      {isActive && (isClicked || dropdownState?.clicked === false) && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
+      {isOpen && (
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0.5 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
