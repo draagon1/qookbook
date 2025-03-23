@@ -67,9 +67,7 @@ export default function Home() {
       {/* "Start Cooking Today" Button */}
       <div className="mt-12 text-center">
         <Link href="#recipes">
-          <a className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300">
-            Start Cooking Today
-          </a>
+          Start Cooking Today
         </Link>
       </div>
 
@@ -127,10 +125,8 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
             {options.map((option, index) => (
               <li key={index}>
                 {/* Link for Main Dishes */}
-                <Link href={option === "Main Dishes" ? "/main-dishes" : "#"}>
-                  <a className="block px-4 py-2 hover:text-[#FF8C94]">
-                    {option}
-                  </a>
+                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
+                  {option}
                 </Link>
               </li>
             ))}
