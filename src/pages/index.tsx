@@ -135,16 +135,15 @@ function Dropdown({
   return (
     <div
       className="relative group"
-      onMouseEnter={() => handleDropdownToggle(title)}
-      onMouseLeave={() => handleDropdownToggle(title)}
+      onClick={() => handleDropdownToggle(title)}
     >
       <button
         className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none"
       >
         {title}
       </button>
-      {(openDropdown === title || openDropdown === null) && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700 group-hover:block hidden">
+      {(openDropdown === title) && (
+        <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
