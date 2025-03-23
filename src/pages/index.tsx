@@ -6,11 +6,14 @@ import Link from "next/link";
 type DropdownProps = {
   title: string;
   options: string[];
+  openDropdown: string | null;
+  handleDropdownToggle: (title: string) => void;
+  dropdownRef: React.RefObject<HTMLDivElement>;
 };
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Allow null here
+  const dropdownRef = useRef<HTMLDivElement | null>(null); // Explicitly define as HTMLDivElement | null
 
   // Close dropdown if clicked outside
   useEffect(() => {
@@ -150,7 +153,7 @@ function Dropdown({
   openDropdown,
   handleDropdownToggle,
   dropdownRef,
-}: DropdownProps & { openDropdown: string | null; handleDropdownToggle: (title: string) => void; dropdownRef: React.RefObject<HTMLDivElement> }) {
+}: DropdownProps) {
   return (
     <div
       ref={dropdownRef}
