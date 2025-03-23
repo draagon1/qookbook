@@ -47,7 +47,7 @@ export default function Home() {
       </main>
 
       <footer className="text-center mt-12 text-sm text-gray-500">
-        <p>Made with nigga by Qookbook</p>
+        <p>Made with ❤️ by Qookbook</p>
       </footer>
     </div>
   );
