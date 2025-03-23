@@ -1,0 +1,150 @@
+import Image from "next/image";
+
+const MainDishes = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
+      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
+        <div className="flex space-x-12 text-gray-700 text-lg">
+          <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
+          <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
+          <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
+          <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
+          <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
+        </div>
+      </nav>
+
+      <section className="mt-24 text-center max-w-4xl p-8">
+        <h2 className="text-6xl font-extrabold leading-tight">
+          Discover Our Delicious Main Dishes
+        </h2>
+        <p className="text-2xl mt-4">
+          Locally sourced and prepared with love.
+        </p>
+      </section>
+
+      {/* Dish 1: Pasta Carbonara */}
+      <div className="mt-16 max-w-6xl w-full p-8 bg-white shadow-lg rounded-lg">
+        <h3 className="text-4xl font-semibold mb-4">Pasta Carbonara</h3>
+        
+        {/* Image Section */}
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/images/pasta-carbonara.jpg"
+            alt="Pasta Carbonara"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-md"
+          />
+        </div>
+        
+        {/* Ingredients */}
+        <h4 className="text-2xl font-semibold mb-2">Ingredients:</h4>
+        <ul className="list-disc pl-6 text-xl">
+          <li>200g Pasta</li>
+          <li>100g Pancetta or Bacon</li>
+          <li>2 Eggs</li>
+          <li>50g Parmesan Cheese</li>
+          <li>1 clove Garlic (minced)</li>
+          <li>Salt and Pepper to taste</li>
+        </ul>
+
+        {/* Recipe */}
+        <h4 className="text-2xl font-semibold mt-8 mb-4">Recipe:</h4>
+        <p className="text-xl">
+          1. Cook the pasta according to package instructions. Drain and set aside, saving a cup of pasta water. <br />
+          2. In a large pan, sauté the pancetta or bacon over medium heat until crispy. Add minced garlic and cook for 1 more minute. <br />
+          3. In a bowl, whisk together the eggs and Parmesan cheese. Season with salt and pepper. <br />
+          4. Add the cooked pasta to the pan with pancetta and toss to combine. Remove from heat and slowly pour the egg mixture over the pasta, tossing continuously to create a creamy sauce. Add reserved pasta water if needed to adjust consistency. <br />
+          5. Serve hot and garnish with extra Parmesan cheese and black pepper.
+        </p>
+      </div>
+
+      {/* Dish 2: Chicken Stir-Fry */}
+      <div className="mt-16 max-w-6xl w-full p-8 bg-white shadow-lg rounded-lg">
+        <h3 className="text-4xl font-semibold mb-4">Chicken Stir-Fry</h3>
+        
+        {/* Image Section */}
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/images/chicken-stir-fry.jpg"
+            alt="Chicken Stir-Fry"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-md"
+          />
+        </div>
+
+        {/* Ingredients */}
+        <h4 className="text-2xl font-semibold mb-2">Ingredients:</h4>
+        <ul className="list-disc pl-6 text-xl">
+          <li>2 Chicken Breasts (sliced thin)</li>
+          <li>1 Bell Pepper (sliced)</li>
+          <li>1 Onion (sliced)</li>
+          <li>1 Carrot (julienned)</li>
+          <li>2 cloves Garlic (minced)</li>
+          <li>2 tbsp Soy Sauce</li>
+          <li>1 tbsp Honey</li>
+          <li>1 tbsp Olive Oil</li>
+          <li>Salt and Pepper to taste</li>
+        </ul>
+
+        {/* Recipe */}
+        <h4 className="text-2xl font-semibold mt-8 mb-4">Recipe:</h4>
+        <p className="text-xl">
+          1. Heat olive oil in a large pan or wok over medium heat. Add chicken slices and cook until browned and cooked through. Remove and set aside. <br />
+          2. In the same pan, add garlic, onion, bell pepper, and carrot. Stir-fry for about 3-4 minutes until vegetables are tender-crisp. <br />
+          3. Add the cooked chicken back to the pan along with soy sauce and honey. Stir to coat and cook for an additional 2 minutes. <br />
+          4. Season with salt and pepper to taste. Serve with rice or noodles.
+        </p>
+      </div>
+
+      {/* Dish 3: Beef Tacos */}
+      <div className="mt-16 max-w-6xl w-full p-8 bg-white shadow-lg rounded-lg">
+        <h3 className="text-4xl font-semibold mb-4">Beef Tacos</h3>
+        
+        {/* Image Section */}
+        <div className="flex justify-center mb-8">
+          <Image
+            src="/images/beef-tacos.jpg"
+            alt="Beef Tacos"
+            width={600}
+            height={400}
+            className="rounded-lg shadow-md"
+          />
+        </div>
+
+        {/* Ingredients */}
+        <h4 className="text-2xl font-semibold mb-2">Ingredients:</h4>
+        <ul className="list-disc pl-6 text-xl">
+          <li>500g Ground Beef</li>
+          <li>1 Onion (chopped)</li>
+          <li>2 cloves Garlic (minced)</li>
+          <li>1 tbsp Taco Seasoning</li>
+          <li>1 can Diced Tomatoes</li>
+          <li>8 Taco Shells</li>
+          <li>Lettuce (shredded)</li>
+          <li>Cheese (grated)</li>
+          <li>Sour Cream</li>
+          <li>Hot Sauce (optional)</li>
+        </ul>
+
+        {/* Recipe */}
+        <h4 className="text-2xl font-semibold mt-8 mb-4">Recipe:</h4>
+        <p className="text-xl">
+          1. In a large skillet, cook ground beef over medium heat until browned. Drain any excess fat. <br />
+          2. Add the chopped onion and garlic to the skillet and cook for 2-3 minutes until softened. <br />
+          3. Stir in taco seasoning and diced tomatoes. Let the mixture simmer for 5 minutes, allowing the flavors to meld. <br />
+          4. Warm the taco shells in the oven according to package instructions. <br />
+          5. Assemble tacos by adding the beef mixture to the shells, followed by lettuce, cheese, sour cream, and hot sauce.
+        </p>
+      </div>
+
+      {/* Footer */}
+      <footer className="mt-16 text-center text-lg text-gray-500 pb-12">
+        <p>Made with ❤️ by Qookbook</p>
+      </footer>
+    </div>
+  );
+};
+
+export default MainDishes;
