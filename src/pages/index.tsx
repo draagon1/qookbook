@@ -10,7 +10,7 @@ type DropdownProps = {
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Fixed the ref type here
+  const dropdownRef = useRef<HTMLDivElement | null>(null); // Allow null here
 
   // Close dropdown if clicked outside
   useEffect(() => {
