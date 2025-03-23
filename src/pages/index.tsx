@@ -9,39 +9,30 @@ type DropdownProps = {
   isOpen: boolean;
   toggleDropdown: () => void;
   dropdownRef: React.RefObject<HTMLDivElement | null>;
-  isInView: boolean; // Added isInView as a prop
 };
 
 export default function Home() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [isInView, setIsInView] = useState(false); // Track visibility of the dropdown
-
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  // Use IntersectionObserver to detect if dropdown is in view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting); // Set state if dropdown is in view
-      },
-      { threshold: 0.5 } // Trigger when 50% of the dropdown is in view
-    );
-    
-    if (dropdownRef.current) {
-      observer.observe(dropdownRef.current);
-    }
-
-    return () => {
-      if (dropdownRef.current) {
-        observer.unobserve(dropdownRef.current);
-      }
-    };
-  }, []);
-
-  // Toggle dropdown visibility
+  // Toggle dropdown visibility (click)
   const toggleDropdown = (title: string) => {
     setOpenDropdown(openDropdown === title ? null : title);
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
@@ -54,7 +45,6 @@ export default function Home() {
             isOpen={openDropdown === "About"}
             toggleDropdown={() => toggleDropdown("About")}
             dropdownRef={dropdownRef}
-            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Ingredients"
@@ -62,7 +52,6 @@ export default function Home() {
             isOpen={openDropdown === "Ingredients"}
             toggleDropdown={() => toggleDropdown("Ingredients")}
             dropdownRef={dropdownRef}
-            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Recipes"
@@ -70,7 +59,6 @@ export default function Home() {
             isOpen={openDropdown === "Recipes"}
             toggleDropdown={() => toggleDropdown("Recipes")}
             dropdownRef={dropdownRef}
-            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="Sources"
@@ -78,7 +66,6 @@ export default function Home() {
             isOpen={openDropdown === "Sources"}
             toggleDropdown={() => toggleDropdown("Sources")}
             dropdownRef={dropdownRef}
-            isInView={isInView} // Pass isInView here
           />
           <Dropdown
             title="News"
@@ -86,7 +73,6 @@ export default function Home() {
             isOpen={openDropdown === "News"}
             toggleDropdown={() => toggleDropdown("News")}
             dropdownRef={dropdownRef}
-            isInView={isInView} // Pass isInView here
           />
         </div>
       </nav>
@@ -157,18 +143,18 @@ function Dropdown({
   isOpen,
   toggleDropdown,
   dropdownRef,
-  isInView,
 }: DropdownProps) {
   return (
     <div
       ref={dropdownRef}
       className={`relative group ${isOpen ? "z-10" : "z-0"}`}
-      onClick={toggleDropdown}
+      onMouseEnter={() => toggleDropdown()} // Open on hover
+      onMouseLeave={() => toggleDropdown()} // Close on mouse leave
     >
       <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
         {title}
       </button>
-      {(isOpen || isInView) && (
+      {isOpen && (
         <div className="absolute bg-white shadow-lg rounded-lg mt-2 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
