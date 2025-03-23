@@ -11,6 +11,7 @@ export default function Home() {
         <div className="flex space-x-12 text-gray-700 text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
+          {/* Modify the Recipes dropdown to link to the main-dishes page */}
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
           <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
           <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
@@ -65,7 +66,7 @@ export default function Home() {
 
       {/* "Start Cooking Today" Button */}
       <div className="mt-12 text-center">
-        <Link href="/main-dishes">
+        <Link href="#recipes">
           <a className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300">
             Start Cooking Today
           </a>
@@ -125,7 +126,8 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
           <ul>
             {options.map((option, index) => (
               <li key={index}>
-                <Link href="#">
+                {/* Link for Main Dishes */}
+                <Link href={option === "Main Dishes" ? "/main-dishes" : "#"}>
                   <a className="block px-4 py-2 hover:text-[#FF8C94]">
                     {option}
                   </a>
