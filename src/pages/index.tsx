@@ -4,6 +4,19 @@ import Link from "next/link";
 
 // Home Component
 export default function Home() {
+  // Effect to load the main-dishes.js script
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "/main-dishes.js";  // Link to your main-dishes.js script in the public folder
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Cleanup script when the component is unmounted
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
@@ -20,7 +33,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="mt-24 text-center max-w-4xl p-8">
         <h2 className="text-6xl font-extrabold leading-tight">
-          Explore Authentic Local Cuisine
+          Explore Global Flavors, Crafted with Locally Sourced Ingredients
         </h2>
         <p className="text-2xl mt-4">
           Bringing fresh, locally sourced ingredients to your kitchen with love.
@@ -121,7 +134,7 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700">
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700"> 
           <ul>
             {options.map((option, index) => (
               <li key={index}>
