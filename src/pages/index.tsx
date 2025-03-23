@@ -21,7 +21,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="mt-24 text-center max-w-4xl p-8">
         <h2 className="text-6xl font-extrabold leading-tight">
-         Explore Global Flavors, Crafted with Locally Sourced Ingredients
+          Explore Global Flavors, Crafted with Locally Sourced Ingredients
         </h2>
         <p className="text-2xl mt-4">
           Bringing fresh, locally sourced ingredients to your kitchen with love.
@@ -67,7 +67,9 @@ export default function Home() {
       {/* "Start Cooking Today" Button */}
       <div className="mt-12 text-center">
         <Link href="#recipes">
-          Start Cooking Today
+          <span className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300">
+            Start Cooking Today
+          </span>
         </Link>
       </div>
 
@@ -126,7 +128,9 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
               <li key={index}>
                 {/* Link for Main Dishes */}
                 <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
-                  {option}
+                  <span className="block px-4 py-2 hover:text-[#FF8C94]">
+                    {option}
+                  </span>
                 </Link>
               </li>
             ))}
