@@ -80,7 +80,12 @@ export default function Home() {
   );
 }
 
-function NavItem({ title }) {
+// Define the type for NavItem props
+type NavItemProps = {
+  title: string;
+};
+
+function NavItem({ title }: NavItemProps) {
   return (
     <div className="group relative">
       <div className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer">
