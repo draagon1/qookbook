@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+// Define the types for the props of the Dropdown component
+type DropdownProps = {
+  title: string;
+  options: string[];
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
@@ -71,7 +77,7 @@ export default function Home() {
 }
 
 // Dropdown component for navigation
-function Dropdown({ title, options }) {
+function Dropdown({ title, options }: DropdownProps) {
   const [open, setOpen] = useState(false);
 
   return (
