@@ -18,8 +18,12 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="mt-24 text-center max-w-4xl p-8">
-        <h2 className="text-6xl font-extrabold text-gray-800 leading-tight">Explore Authentic Local Cuisine</h2>
-        <p className="text-2xl text-gray-600 mt-4">Bringing fresh, locally sourced ingredients to your kitchen.</p>
+        <h2 className="text-6xl font-extrabold text-gray-800 leading-tight">
+          Explore Authentic Local Cuisine
+        </h2>
+        <p className="text-2xl text-gray-600 mt-4">
+          Bringing fresh, locally sourced ingredients to your kitchen.
+        </p>
       </section>
 
       {/* Main Content */}
@@ -27,30 +31,54 @@ export default function Home() {
         {/* Text Content */}
         <div className="text-gray-800 text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
           <h3 className="text-4xl font-semibold">Why Choose Local Ingredients?</h3>
-          <p className="mt-6">Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact.</p>
+          <p className="mt-6">
+            Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact.
+          </p>
           <h3 className="text-4xl font-semibold mt-8">Our Mission</h3>
-          <p className="mt-6">Qookbook is a community-driven initiative that celebrates the essence of home-cooked meals, connecting food lovers with sustainable sources.</p>
+          <p className="mt-6">
+            Qookbook is a community-driven initiative that celebrates the essence of home-cooked meals, connecting food lovers with sustainable sources.
+          </p>
         </div>
         {/* Image Section */}
         <div className="flex justify-center items-center flex-1">
-          <Image src="/images/food-table.jpg" alt="Food Table" width={600} height={600} className="rounded-lg shadow-lg" />
+          <Image
+            src="/images/food-table.jpg"
+            alt="Food Table"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-lg"
+          />
         </div>
       </div>
 
       {/* Additional Images Section */}
       <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
         <div className="flex justify-center items-center flex-1">
-          <Image src="/images/farm-fresh.jpg" alt="Farm Fresh" width={600} height={600} className="rounded-lg shadow-lg" />
+          <Image
+            src="/images/farm-fresh.jpg"
+            alt="Farm Fresh"
+            width={600}
+            height={600}
+            className="rounded-lg shadow-lg"
+          />
         </div>
         <div className="text-gray-800 text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
           <h3 className="text-4xl font-semibold">Fresh from the Farm</h3>
-          <p className="mt-6">Discover the best locally grown ingredients that elevate your cooking experience.</p>
+          <p className="mt-6">
+            Discover the best locally grown ingredients that elevate your cooking experience.
+          </p>
         </div>
       </div>
 
       {/* Bottom Banner Image */}
       <div className="mt-16 w-full flex justify-center">
-        <Image src="/images/ingredients.jpg" alt="Ingredients" width={900} height={450} className="rounded-lg shadow-md" />
+        <Image
+          src="/images/ingredients.jpg"
+          alt="Ingredients"
+          width={900}
+          height={450}
+          className="rounded-lg shadow-md"
+        />
       </div>
 
       {/* Footer */}
@@ -61,7 +89,12 @@ export default function Home() {
   );
 }
 
-function NavItem({ title }) {
-  return <div className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer">{title}</div>;
+// Navigation Bar Item Component
+function NavItem({ title }: { title: string }) {
+  return (
+    <div className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer">
+      {title}
+    </div>
+  );
 }
 
