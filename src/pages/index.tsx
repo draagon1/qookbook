@@ -5,7 +5,10 @@ import Link from "next/link";
 // Home Component
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center relative">
+      {/* Background Splash */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white opacity-20 via-transparent to-transparent z-0"></div>
+
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10 border-b-8 border-[#FF8C94] hover:border-[#FFAAA6] transition duration-300">
         {/* Logo Section */}
@@ -30,7 +33,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="mt-24 text-center max-w-4xl p-8">
+      <section className="mt-24 text-center max-w-4xl p-8 relative z-10">
         <h2 className="text-6xl font-extrabold leading-tight text-black hover:text-[#FF8C94] transition duration-300">
           Explore Global Flavors, Crafted with Locally Sourced Ingredients
         </h2>
@@ -40,7 +43,7 @@ export default function Home() {
       </section>
 
       {/* Main Content */}
-      <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
+      <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12 relative z-10">
         {/* Text Content */}
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1 border-4 border-[#FF8C94] transform hover:scale-105 transition duration-500">
           <h3 className="text-4xl font-semibold mb-4 text-black">Why Choose Local Ingredients?</h3>
