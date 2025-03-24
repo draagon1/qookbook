@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Enable experimental features
   experimental: {
-    turbo: true, // This enables the Turbopack feature
+    turbo: true, // Enable turbo mode without additional properties
   },
 };
 
