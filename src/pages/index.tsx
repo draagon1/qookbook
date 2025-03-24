@@ -23,13 +23,13 @@ export default function Home() {
         </Link>
 
         {/* Search Bar Section */}
-        <div className="flex items-center justify-center relative mx-8">
+        <div className="flex items-center justify-center relative mx-4">
           <input
             type="text"
             placeholder="Search..."
             className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
           />
-          <span className="absolute left-4 top-3 text-gray-600 text-xl transform translate-y-[-1px]">
+          <span className="absolute left-4 top-3 text-gray-600 text-xl transform translate-y-[-2px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -48,7 +48,7 @@ export default function Home() {
         </div>
 
         {/* Navigation Menu */}
-        <div className="flex space-x-10 text-[#88d499] text-lg">
+        <div className="flex space-x-8 text-[#88d499] text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
