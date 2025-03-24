@@ -5,7 +5,7 @@ const MainDishes = () => {
     "Meat-Based Dishes": [
       {
         name: "Grilled Chicken with Biryani Rice",
-         image: "/images/biryani.jpg", // Add the image URL
+         image: "https://wallpaperaccess.com/full/4723250.jpg", // Add the image URL
         ingredients: [
           "1 1/2 cups basmati rice",
           "2 chicken breasts, cut into pieces",
@@ -337,8 +337,8 @@ const MainDishes = () => {
                   {dish.image && (
                     <div
                       style={{
-                        width: "250px", // You can adjust the width of the image
-                        height: "250px", // Make the height equal to width for a square shape
+                        width: "500px", // You can adjust the width of the image
+                        height: "500px", // Make the height equal to width for a square shape
                         overflow: "hidden",
                         borderRadius: "10px",
                         border: "2px solid #ddd",
