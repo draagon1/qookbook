@@ -28,9 +28,8 @@ export default function Home() {
             type="text"
             placeholder="Search..."
             className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
-            disabled
           />
-          <span className="absolute left-4 top-3 text-gray-600 text-xl">
+          <span className="absolute left-4 top-3 text-gray-600 text-xl transform translate-y-[-1px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
