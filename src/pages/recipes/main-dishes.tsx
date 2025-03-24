@@ -279,39 +279,47 @@ const MainDishes = () => {
 
 
   return (
-    <div style={{ backgroundColor: "#DCEDC2", padding: "20px" }}>
-      <h1 style={{ color: "#FF8C94" }}>Main Dishes</h1>
+    <div style={{ backgroundColor: "#FFFFFF", padding: "20px" }}>
+      <h1 style={{ color: "#FF8C94", fontSize: "5em", textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)" }}>
+        Main Dishes
+      </h1>
       {Object.entries(categories).map(([category, dishes]) => (
         <div key={category}>
-          <h2 style={{ borderBottom: "2px solid #FFAAA6", paddingBottom: "5px" }}>{category}</h2>
+          <h2 style={{ 
+            borderBottom: "2px solid #FFAAA6", 
+            paddingBottom: "5px", 
+            fontSize: "3em", 
+            textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)" 
+          }}>
+            {category}
+          </h2>
           {dishes.map((dish, index) => (
             <div key={index}>
               <button
-                style={{ width: "100%", textAlign: "left", padding: "10px", backgroundColor: "#FFD385", border: "none", cursor: "pointer", margin: "5px 0" }}
-                onClick={() =>
-                    setOpenDropdown((prevState: number | null) =>
-                      prevState === index ? null : index
-                    )
-                  }
-                  
-
-                  
-                  
-
-
+                style={{ 
+                  width: "100%", 
+                  textAlign: "left", 
+                  padding: "10px", 
+                  backgroundColor: "#FFD385", 
+                  border: "none", 
+                  cursor: "pointer", 
+                  margin: "5px 0", 
+                  fontSize: "1.5em" 
+                }}
+                onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
               >
                 {dish.name}
               </button>
               {openDropdown === index && (
                 <div style={{ padding: "10px", backgroundColor: "#FFF3E0" }}>
-                  <h3>Ingredients:</h3>
-                  <ul>
+                  <h3 style={{ fontSize: "2em" }}>Ingredients:</h3>
+                  <ul style={{ fontSize: "1.5em" }}>
                     {dish.ingredients.map((ingredient, i) => (
                       <li key={i}>{ingredient}</li>
                     ))}
                   </ul>
-                  <h3>Recipe:</h3>
-                  <ol>
+                  <h3 style={{ fontSize: "2em" }}>Recipe:</h3>
+                  <ol style={{ fontSize: "1.5em" }}>
                     {dish.recipe.map((step, i) => (
                       <li key={i}>{step}</li>
                     ))}
