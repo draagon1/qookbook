@@ -11,7 +11,7 @@ export default function Home() {
         {/* Logo Section */}
         <Link href="/">
           <Image
-            src="/images/logo.png" // Replace with your logo image path
+            src="/images/logo.jpg" // Replace with your logo image path
             alt="Qookbook Logo"
             width={100} // Adjust the width as needed
             height={50} // Adjust the height as needed
