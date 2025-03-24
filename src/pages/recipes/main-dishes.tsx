@@ -5,6 +5,7 @@ const MainDishes = () => {
     "Meat-Based Dishes": [
       {
         name: "Grilled Chicken with Biryani Rice",
+         image: "https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22Screenshot%202025-03-24%20213744.png%22%2C%22type%22%3A%22image%2Fpng%22%2C%22signedurl_expire%22%3A%222028-03-23T18%3A37%3A54.903Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F%2F1e3573c706b345c3%2FScreenshot%25202025-03-24%2520213744.png%3FExpires%3D1837449475%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DkjRkHflDbsI0g7fKp~LezUpei2oSjlRyMP32alYT0E0tNHN5xZsoc6OnDO5LLyREavAUD~ZBnw3waIV28NCj~B6q470LHkGntxYwRpQM5i4qPak2enkc6RZtYMCWYKxqKbpOCNDJBICVRtHzC8QF~wYVSJvqlmvU2nHkeppF4L1Rp3XAjyruiPlOqwOiM7zp38grwnZ7NGrGekwqvT94ikCsq9noxRfSplps1NYNGhFCOGUvtshlx33qSk9WadghWOOBW-3QcYeawQCcpsqBTNtejxGMNswXhuMoZm3rBzvSVBwvrYQC3NXCqtbTtW9RnAu6nGZnyalqp-yPnAOhvg__%22%7D", // Add the image URL
         ingredients: [
           "1 1/2 cups basmati rice",
           "2 chicken breasts, cut into pieces",
@@ -303,19 +304,46 @@ const MainDishes = () => {
                 {dish.name}
               </button>
               {openDropdown === index && (
-                <div style={{ padding: "15px", backgroundColor: "#ffffff", border: "1px solid #ddd" }}>
-                  <h3 style={{ fontSize: "1.8em", color: "#2C3E50" }}>Ingredients:</h3>
-                  <ul style={{ fontSize: "1.5em", color: "#555" }}>
-                    {dish.ingredients.map((ingredient, i) => (
-                      <li key={i}>{ingredient}</li>
-                    ))}
-                  </ul>
-                  <h3 style={{ fontSize: "1.8em", color: "#2C3E50" }}>Recipe:</h3>
-                  <ol style={{ fontSize: "1.5em", color: "#555" }}>
-                    {dish.recipe.map((step, i) => (
-                      <li key={i}>{step}</li>
-                    ))}
-                  </ol>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px", padding: "15px", backgroundColor: "#ffffff", border: "1px solid #ddd" }}>
+                  {/* Image Section */}
+                  <div
+                    style={{
+                      width: "150px",
+                      height: "150px",
+                      overflow: "hidden",
+                      borderRadius: "10px",
+                      border: "2px solid #ddd",
+                      position: "relative",
+                      boxSizing: "border-box"
+                    }}
+                  >
+                    <img
+                      src={dish.image}
+                      alt={dish.name}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        transition: "transform 0.3s ease-in-out",
+                      }}
+                      className="imageHoverEffect"
+                    />
+                  </div>
+                  {/* Text Section */}
+                  <div>
+                    <h3 style={{ fontSize: "1.8em", color: "#2C3E50" }}>Ingredients:</h3>
+                    <ul style={{ fontSize: "1.5em", color: "#555" }}>
+                      {dish.ingredients.map((ingredient, i) => (
+                        <li key={i}>{ingredient}</li>
+                      ))}
+                    </ul>
+                    <h3 style={{ fontSize: "1.8em", color: "#2C3E50" }}>Recipe:</h3>
+                    <ol style={{ fontSize: "1.5em", color: "#555" }}>
+                      {dish.recipe.map((step, i) => (
+                        <li key={i}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               )}
             </div>
