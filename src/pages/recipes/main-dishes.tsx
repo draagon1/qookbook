@@ -5,7 +5,7 @@ const MainDishes = () => {
     "Meat-Based Dishes": [
       {
         name: "Grilled Chicken with Biryani Rice",
-         image: "https://wallpaperaccess.com/full/4723250.jpg", // Add the image URL
+         image: "/images/biryani.jpg", // Add the image URL
         ingredients: [
           "1 1/2 cups basmati rice",
           "2 chicken breasts, cut into pieces",
@@ -24,7 +24,7 @@ const MainDishes = () => {
       },
       {
         name: "Grilled Chicken with Veggie Rice",
-        image: "/recipes/vegrice.jpg",
+        image: "/images/vegrice.jpg",
         ingredients: [
           "1 cup basmati rice",
           "1/2 cup chopped carrots",
