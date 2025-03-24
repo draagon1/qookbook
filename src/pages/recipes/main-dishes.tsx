@@ -278,7 +278,7 @@ const MainDishes = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
-    <div style={{ backgroundColor: "#F0F8FF", padding: "20px" }}>
+    <div style={{ backgroundColor: "#DCEDC2", padding: "20px" }}>
       <h1 style={{ color: "#FF8C94" }}>Main Dishes</h1>
       {Object.entries(categories).map(([category, dishes]) => (
         <div key={category}>
@@ -286,17 +286,42 @@ const MainDishes = () => {
           {dishes.map((dish, index) => (
             <div key={index}>
               <button
-                style={{
-                  width: "100%",
-                  textAlign: "left",
-                  padding: "10px",
-                  backgroundColor: "#FFD385",
-                  border: "none",
-                  cursor: "pointer",
-                  margin: "5px 0"
-                }}
-                onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
+                style={{ width: "100%", textAlign: "left", padding: "10px", backgroundColor: "#FFD385", border: "none", cursor: "pointer", margin: "5px 0" }}
+                onClick={() => setOpenDropdown(prevState => {
+                    if (prevState === index) {
+                      return null;
+                    }
+                    return index;
+                  })}
+                  
+                  
+
+
               >
                 {dish.name}
               </button>
-              {openDropdown === index &&
+              {openDropdown === index && (
+                <div style={{ padding: "10px", backgroundColor: "#FFF3E0" }}>
+                  <h3>Ingredients:</h3>
+                  <ul>
+                    {dish.ingredients.map((ingredient, i) => (
+                      <li key={i}>{ingredient}</li>
+                    ))}
+                  </ul>
+                  <h3>Recipe:</h3>
+                  <ol>
+                    {dish.recipe.map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default MainDishes;
