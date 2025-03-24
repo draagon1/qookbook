@@ -7,11 +7,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
-      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
+      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between fixed top-0 left-0 right-0 z-10 items-center">
+        {/* Logo on the Left */}
+        <Link href="/">
+          <Image src="/images/logo.png" alt="Qookbook Logo" width={80} height={80} className="cursor-pointer" />
+        </Link>
+
+        {/* Navigation Links */}
         <div className="flex space-x-12 text-gray-700 text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
-          {/* Modify the Recipes dropdown to link to the main-dishes page */}
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
           <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
           <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
@@ -41,6 +46,7 @@ export default function Home() {
             Qookbook is a community-driven initiative celebrating the essence of home-cooked meals, connecting food lovers with sustainable sources and supporting local businesses to make the world taste better.
           </p>
         </div>
+
         {/* Image Section */}
         <div className="flex justify-center items-center flex-1">
           <Image
@@ -83,34 +89,26 @@ export default function Home() {
 
 // Dropdown Component
 function Dropdown({ title, options }: { title: string; options: string[] }) {
-  // Local state for hover and click
   const [hoverOpen, setHoverOpen] = useState(false);
   const [clickedOpen, setClickedOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Combine states: dropdown is open if hovered or clicked
   const isOpen = hoverOpen || clickedOpen;
 
-  // Handle click outside for this dropdown instance
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setClickedOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div
       ref={containerRef}
       className="relative inline-block"
-      // Set hover events on the container to open dropdown
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => setHoverOpen(false)}
       onClick={(e) => {
@@ -122,11 +120,10 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700"> 
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
-                {/* Link for Main Dishes */}
                 <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
                   <span className="block px-4 py-2 hover:text-[#FF8C94]">
                     {option}
