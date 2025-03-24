@@ -22,6 +22,19 @@ export default function Home() {
           />
         </Link>
 
+        {/* Search Bar Section */}
+        <div className="flex items-center justify-center relative mx-8">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#FF8C94] text-white placeholder-white border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
+            disabled
+          />
+          <span className="absolute left-4 top-3 text-white text-xl">
+            🔍
+          </span>
+        </div>
+
         {/* Navigation Menu */}
         <div className="flex space-x-10 text-[#88d499] text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
