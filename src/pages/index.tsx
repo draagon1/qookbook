@@ -7,11 +7,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
-      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-center fixed top-0 left-0 right-0 z-10">
+      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
+        {/* Logo Section */}
+        <Link href="/">
+          <Image
+            src="/images/logo.png" // Replace with your logo image path
+            alt="Qookbook Logo"
+            width={100} // Adjust the width as needed
+            height={50} // Adjust the height as needed
+            className="cursor-pointer"
+          />
+        </Link>
+
+        {/* Navigation Menu */}
         <div className="flex space-x-12 text-gray-700 text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
-          {/* Modify the Recipes dropdown to link to the main-dishes page */}
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
           <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
           <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
