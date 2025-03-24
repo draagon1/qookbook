@@ -5,7 +5,7 @@ const MainDishes = () => {
     "Meat-Based Dishes": [
       {
         name: "Grilled Chicken with Biryani Rice",
-         image: "", // Add the image URL
+         image: "/images/biryani.jpg", // Add the image URL
         ingredients: [
           "1 1/2 cups basmati rice",
           "2 chicken breasts, cut into pieces",
@@ -24,7 +24,7 @@ const MainDishes = () => {
       },
       {
         name: "Grilled Chicken with Veggie Rice",
-        image: "",
+        image: "/images/vegrice.jpg",
         ingredients: [
           "1 cup basmati rice",
           "1/2 cup chopped carrots",
@@ -46,7 +46,7 @@ const MainDishes = () => {
       },
       {
         name: "Ground Beef with Rice",
-        image: "",
+        image: "/images/groundrice.jpg",
         ingredients: [
           "200g ground beef",
           "1 cup rice",
@@ -66,7 +66,7 @@ const MainDishes = () => {
       },
       {
         name: "Mexican-Style Tacos",
-        image: "",
+        image: "/images/taco.jpg",
         ingredients: [
           "200g ground beef",
           "1 tbsp olive oil",
@@ -88,7 +88,7 @@ const MainDishes = () => {
     "Pasta Dishes": [
       {
         name: "Pink Pasta with Chicken Pieces",
-        image: "",
+        image: "/images/pinkpiece.jpg",
         ingredients: [
           "300g pasta noodles (penne or fusilli)",
           "2 chicken breasts, sliced",
@@ -112,7 +112,7 @@ const MainDishes = () => {
       },
       {
         name: "Pink Pasta with Grilled Chicken",
-        image: "",
+        image: "/images/pinkgrilled.jpg",
         ingredients: [
           "200g pasta noodles",
           "1/2 onion, chopped",
@@ -136,7 +136,7 @@ const MainDishes = () => {
       },
       {
         name: "Pasta with Vegetables",
-        image: "",
+        image: "/images/vegetablepasta.jpg",
         ingredients: [
           "200g pasta noodles",
           "1/2 onion, chopped",
@@ -161,7 +161,7 @@ const MainDishes = () => {
       },
       {
         name: "Alfredo Pasta",
-        image: "",
+        image: "/images/alfredo.jpg",
         ingredients: [
           "200g pasta noodles",
           "1/4 cup butter",
@@ -180,7 +180,7 @@ const MainDishes = () => {
       },
       {
         name: "Creamy Pasta with Chicken Pieces",
-        image: "",
+        image: "/images/creamypieces.jpg",
         ingredients: [
           "200g pasta noodles",
           "200ml cooking cream",
@@ -204,7 +204,7 @@ const MainDishes = () => {
     "Vegetarian Dishes": [
       {
         name: "Stuffed Cabbage",
-        image: "",
+        image: "/images/stuffedcabbage.jpg",
         ingredients: [
           "1 medium cabbage, leaves separated",
           "1 cup rice",
@@ -225,7 +225,7 @@ const MainDishes = () => {
       },
       {
         name: "Stuffed Zucchini",
-        image: "",
+        image: "/images/stuffedzuc.jpg",
         ingredients: [
           "5 medium zucchinis, hollowed out",
           "1 cup rice",
@@ -246,7 +246,7 @@ const MainDishes = () => {
       },
       {
         name: "Zucchini Casserole",
-        image: "",
+        image: "/images/zuc.jpg",
         ingredients: [
           "2 medium zucchinis, sliced",
           "1/2 cup tomato puree",
@@ -266,7 +266,7 @@ const MainDishes = () => {
       },
       {
         name: "Vegetable Noodles",
-        image: "",
+        image: "/images/vegnoodle.jpg",
         ingredients: [
           "200g noodles",
           "1 medium zucchini, sliced",
