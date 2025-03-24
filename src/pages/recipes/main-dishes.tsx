@@ -24,7 +24,7 @@ const MainDishes = () => {
       },
       {
         name: "Grilled Chicken with Veggie Rice",
-        image: "/images/vegrice.jpg",
+        image: "/recipes/vegrice.jpg",
         ingredients: [
           "1 cup basmati rice",
           "1/2 cup chopped carrots",
