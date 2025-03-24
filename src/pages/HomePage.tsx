@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // Home Component
-export default function Home() {
+export default function MainPage() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
@@ -137,3 +137,4 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
     </div>
   );
 }
+
