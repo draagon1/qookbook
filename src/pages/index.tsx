@@ -68,7 +68,7 @@ export default function Home() {
       </div>
 
       {/* Bottom Banner Image */}
-      <div className="mt-16 w-full flex justify-center">
+      <div className="mt-16 w-full flex justify-center relative z-10">
         <Image
           src="/images/ingredients.jpg"
           alt="Fresh Ingredients"
@@ -79,7 +79,7 @@ export default function Home() {
       </div>
 
       {/* "Start Cooking Today" Button */}
-      <div className="mt-12 text-center">
+      <div className="mt-12 text-center relative z-10">
         <Link href="#recipes">
           <span className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300 transform hover:scale-110">
             Start Cooking Today
@@ -88,7 +88,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-16 text-center text-lg text-gray-500 pb-12">
+      <footer className="mt-16 text-center text-lg text-gray-500 pb-12 relative z-10">
         <p>Made with ❤️ by Qookbook</p>
       </footer>
     </div>
