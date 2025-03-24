@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#93163e] via-[#C2527D] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
-      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
+      <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10 border-b-4 border-[#8b1a1a]">
         {/* Logo Section */}
         <Link href="/">
           <Image
@@ -20,7 +20,7 @@ export default function Home() {
         </Link>
 
         {/* Navigation Menu */}
-        <div className="flex space-x-10 text-[#88d499] text-lg"> {/* Adjusted dropdown to be more left */}
+        <div className="flex space-x-10 text-[#88d499] text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
@@ -30,7 +30,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="mt-24 text-center max-w-4xl p-8">
+      <section className="mt-24 text-center max-w-4xl p-8 bg-white shadow-lg rounded-lg border-2 border-[#8b1a1a]">
         <h2 className="text-6xl font-extrabold leading-tight text-black">
           Explore Global Flavors, Crafted with Locally Sourced Ingredients
         </h2>
@@ -42,7 +42,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
         {/* Text Content */}
-        <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
+        <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1 border-2 border-[#8b1a1a]">
           <h3 className="text-4xl font-semibold mb-4 text-black">Why Choose Local Ingredients?</h3>
           <p className="text-black">
             Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact. Every meal tells a story of community and sustainability.
@@ -59,7 +59,7 @@ export default function Home() {
             alt="Food Table"
             width={600}
             height={600}
-            className="rounded-lg shadow-lg hover:scale-105 transition duration-300"
+            className="rounded-lg shadow-lg hover:scale-105 transition duration-300 border-4 border-[#8b1a1a]"
           />
         </div>
       </div>
@@ -71,14 +71,14 @@ export default function Home() {
           alt="Fresh Ingredients"
           width={900}
           height={450}
-          className="rounded-lg shadow-md hover:scale-105 transition duration-300"
+          className="rounded-lg shadow-md hover:scale-105 transition duration-300 border-4 border-[#8b1a1a]"
         />
       </div>
 
       {/* "Start Cooking Today" Button */}
       <div className="mt-12 text-center">
         <Link href="#recipes">
-          <span className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300">
+          <span className="bg-[#FFAAA6] text-white text-3xl px-10 py-4 rounded-full shadow-lg hover:bg-[#FF8C94] transition duration-300 border-2 border-[#8b1a1a]">
             Start Cooking Today
           </span>
         </Link>
@@ -121,7 +121,6 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
     <div
       ref={containerRef}
       className="relative inline-block"
-      // Set hover events on the container to open dropdown
       onMouseEnter={() => setHoverOpen(true)}
       onMouseLeave={() => setHoverOpen(false)}
       onClick={(e) => {
@@ -129,19 +128,16 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
         setClickedOpen((prev) => !prev);
       }}
     >
-      <button className="text-xl font-semibold px-4 py-2 hover:text-[#FF8C94] cursor-pointer focus:outline-none">
+      <button className="text-xl font-semibold px-4 py-2 hover:text-[#FF8C94] cursor-pointer focus:outline-none border-b-2 border-transparent hover:border-[#8b1a1a]">
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700"> 
+        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700 border-2 border-[#8b1a1a]">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
-                {/* Link for Main Dishes */}
-                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}> 
-                  <span className="block px-4 py-2 hover:text-[#FF8C94]">
-                    {option}
-                  </span>
+                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
+                  <span className="block px-4 py-2 hover:text-[#FF8C94]">{option}</span>
                 </Link>
               </li>
             ))}
