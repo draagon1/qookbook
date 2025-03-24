@@ -23,7 +23,7 @@ const MainDishes = () => {
         ]
       },
       {
-        name: "Grilled Chicken with Veggie Rice",
+        name: "Grilled Chicken with Veggies Rice",
         image: "/images/vegrice.jpg",
         ingredients: [
           "1 cup basmati rice",
