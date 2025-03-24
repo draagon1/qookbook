@@ -5,7 +5,7 @@ import Link from "next/link";
 // Home Component
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-r from-[#93163e] via-[#C2527D] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
         {/* Logo Section */}
@@ -138,7 +138,7 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
             {options.map((option, index) => (
               <li key={index}>
                 {/* Link for Main Dishes */}
-                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
+                <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}> 
                   <span className="block px-4 py-2 hover:text-[#FF8C94]">
                     {option}
                   </span>
