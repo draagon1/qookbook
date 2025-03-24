@@ -43,3 +43,5 @@ next-env.d.ts
 git add .gitignore
 git commit -m "Add .gitignore file"
 git push
+
+.vercel
