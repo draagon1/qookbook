@@ -27,12 +27,12 @@ export default function Home() {
           <input
             type="text"
             placeholder="Search..."
-            className="w-64 h-10 pl-8 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
+            className="w-64 h-10 pl-4 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
           />
         </div>
 
         {/* Navigation Menu */}
-        <div className="flex space-x-8 text-[#88d499] text-lg" style={{ marginLeft: "10px" }}>
+        <div className="flex space-x-8 text-[#88d499] text-lg">
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices", "Meats"]} />
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
