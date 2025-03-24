@@ -24,6 +24,7 @@ const MainDishes = () => {
       },
       {
         name: "Grilled Chicken with Veggie Rice",
+        image: "",
         ingredients: [
           "1 cup basmati rice",
           "1/2 cup chopped carrots",
@@ -45,6 +46,7 @@ const MainDishes = () => {
       },
       {
         name: "Ground Beef with Rice",
+        image: "",
         ingredients: [
           "200g ground beef",
           "1 cup rice",
@@ -64,6 +66,7 @@ const MainDishes = () => {
       },
       {
         name: "Mexican-Style Tacos",
+        image: "",
         ingredients: [
           "200g ground beef",
           "1 tbsp olive oil",
@@ -85,6 +88,7 @@ const MainDishes = () => {
     "Pasta Dishes": [
       {
         name: "Pink Pasta with Chicken Pieces",
+        image: "",
         ingredients: [
           "300g pasta noodles (penne or fusilli)",
           "2 chicken breasts, sliced",
@@ -108,6 +112,7 @@ const MainDishes = () => {
       },
       {
         name: "Pink Pasta with Grilled Chicken",
+        image: "",
         ingredients: [
           "200g pasta noodles",
           "1/2 onion, chopped",
@@ -131,6 +136,7 @@ const MainDishes = () => {
       },
       {
         name: "Pasta with Vegetables",
+        image: "",
         ingredients: [
           "200g pasta noodles",
           "1/2 onion, chopped",
@@ -155,6 +161,7 @@ const MainDishes = () => {
       },
       {
         name: "Alfredo Pasta",
+        image: "",
         ingredients: [
           "200g pasta noodles",
           "1/4 cup butter",
@@ -173,6 +180,7 @@ const MainDishes = () => {
       },
       {
         name: "Creamy Pasta with Chicken Pieces",
+        image: "",
         ingredients: [
           "200g pasta noodles",
           "200ml cooking cream",
@@ -196,6 +204,7 @@ const MainDishes = () => {
     "Vegetarian Dishes": [
       {
         name: "Stuffed Cabbage",
+        image: "",
         ingredients: [
           "1 medium cabbage, leaves separated",
           "1 cup rice",
@@ -216,6 +225,7 @@ const MainDishes = () => {
       },
       {
         name: "Stuffed Zucchini",
+        image: "",
         ingredients: [
           "5 medium zucchinis, hollowed out",
           "1 cup rice",
@@ -236,6 +246,7 @@ const MainDishes = () => {
       },
       {
         name: "Zucchini Casserole",
+        image: "",
         ingredients: [
           "2 medium zucchinis, sliced",
           "1/2 cup tomato puree",
@@ -255,6 +266,7 @@ const MainDishes = () => {
       },
       {
         name: "Vegetable Noodles",
+        image: "",
         ingredients: [
           "200g noodles",
           "1 medium zucchini, sliced",
