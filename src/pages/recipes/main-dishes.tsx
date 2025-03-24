@@ -2,80 +2,114 @@ import React from "react";
 
 const mainDishes = [
     {
-        title: "Grilled Chicken Salad",
+        title: "Grilled Chicken with Biryani Rice",
         ingredients: [
-            "2 chicken breasts",
-            "Mixed greens (lettuce, spinach, arugula)",
-            "Tomatoes (sliced)",
-            "Cucumbers (sliced)",
-            "Red onions (sliced)",
-            "Olive oil",
-            "Salt and pepper",
-            "Lemon vinaigrette dressing"
+            "1 1/2 cups basmati rice",
+            "2 chicken breasts, cut into pieces",
+            "2 tbsp biryani seasoning",
+            "2 medium tomatoes, chopped",
+            "1 large onion, sliced",
+            "2 tbsp olive oil",
+            "2 cloves minced garlic"
         ],
         recipe: [
-            "1. Preheat the grill to medium-high heat.",
-            "2. Season the chicken breasts with olive oil, salt, and pepper.",
-            "3. Grill the chicken for about 7-8 minutes per side or until fully cooked.",
-            "4. In a large bowl, mix the greens, tomatoes, cucumbers, and onions.",
-            "5. Slice the grilled chicken and place it on top of the salad.",
-            "6. Drizzle with lemon vinaigrette dressing and serve."
-        ],
-        cookTime: "20 minutes",
-        servings: 2
+            "1. Marinate chicken with biryani seasoning and set aside for 15 minutes.",
+            "2. Cook onions and garlic in olive oil until golden. Add tomatoes, and sauté.",
+            "3. Add chicken and cook until browned.",
+            "4. Cook rice separately, then mix with the chicken mixture. Simmer for 5 minutes."
+        ]
     },
     {
-        title: "Spaghetti Aglio e Olio",
+        title: "Grilled Chicken with Veggie Rice",
         ingredients: [
-            "200g spaghetti",
-            "4 cloves garlic (thinly sliced)",
-            "1/4 cup olive oil",
-            "1/2 teaspoon red pepper flakes",
-            "Parsley (chopped)",
-            "Salt and pepper to taste",
-            "Grated Parmesan (optional)"
+            "1 cup basmati rice",
+            "1/2 cup chopped carrots",
+            "1/2 cup peas",
+            "2 chicken breasts, sliced",
+            "2 tbsp olive oil",
+            "2 tbsp yogurt (for marinating)",
+            "1 tsp salt",
+            "1/2 tsp black pepper",
+            "1/2 tsp paprika",
+            "1/2 tsp garlic powder"
         ],
         recipe: [
-            "1. Cook the spaghetti according to the package instructions.",
-            "2. In a large skillet, heat the olive oil over medium heat.",
-            "3. Add the garlic and red pepper flakes and sauté until the garlic is golden brown.",
-            "4. Drain the spaghetti, reserving some pasta water.",
-            "5. Add the spaghetti to the skillet and toss it with the garlic oil mixture.",
-            "6. Add a little pasta water to create a smooth sauce.",
-            "7. Season with salt, pepper, and chopped parsley.",
-            "8. Serve with grated Parmesan if desired."
+            "1. Cook rice with carrots and peas until tender.",
+            "2. Marinate chicken with yogurt, olive oil, and seasonings for 15 minutes.",
+            "3. Grill the marinated chicken until cooked, then slice.",
+            "4. Serve the chicken over the veggie rice."
+        ]
+    },
+    {
+        title: "Pink Pasta with Chicken Pieces",
+        ingredients: [
+            "300g pasta noodles (penne or fusilli)",
+            "2 chicken breasts, sliced",
+            "1 cup cooking cream",
+            "2 tbsp olive oil",
+            "1 onion, finely chopped",
+            "2 cloves minced garlic",
+            "2 tbsp tomato paste",
+            "1 cup tomato puree",
+            "1 tsp salt",
+            "1/2 tsp black pepper",
+            "1/2 tsp paprika",
+            "1/2 tsp oregano"
         ],
-        cookTime: "15 minutes",
-        servings: 2
+        recipe: [
+            "1. Boil pasta noodles, drain, and set aside.",
+            "2. Heat olive oil, cook chicken with salt, pepper, and paprika. Set aside.",
+            "3. Sauté onions and garlic, add tomato paste and puree, then cooking cream and oregano.",
+            "4. Add pasta and chicken to the sauce. Stir well and serve."
+        ]
+    },
+    {
+        title: "Stuffed Cabbage",
+        ingredients: [
+            "1 medium cabbage, leaves separated",
+            "1 cup rice",
+            "2 tbsp tomato paste",
+            "1/2 cup chopped coriander",
+            "1/2 onion, chopped",
+            "2 cloves minced garlic",
+            "2 tbsp olive oil",
+            "Juice of 1 lemon",
+            "Salt, pepper, dill, and cilantro"
+        ],
+        recipe: [
+            "1. Blanch cabbage leaves and set aside.",
+            "2. Mix rice, tomato paste, onions, garlic, herbs, and seasonings.",
+            "3. Fill cabbage leaves, roll, and place in a pot. Add lemon juice and water.",
+            "4. Simmer for 30 minutes."
+        ]
     }
 ];
 
-const MainDishes = () => {
+const MainDishesPage = () => {
     return (
-        <div>
-            <h1>Main Dishes</h1>
-            <ul>
+        <div className="bg-[#A8E6CE] min-h-screen p-8 text-[#333]">
+            <h1 className="text-4xl font-bold text-center text-[#FF8C94] mb-6">Main Dishes</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mainDishes.map((dish, index) => (
-                    <li key={index}>
-                        <h2>{dish.title}</h2>
-                        <p><strong>Cook Time:</strong> {dish.cookTime} | <strong>Servings:</strong> {dish.servings}</p>
-                        <h3>Ingredients:</h3>
-                        <ul>
-                            {dish.ingredients.map((ingredient, i) => (
-                                <li key={i}>{ingredient}</li>
+                    <div key={index} className="bg-white p-4 rounded-2xl shadow-lg">
+                        <h2 className="text-2xl font-semibold text-[#DCEDC2] mb-2">{dish.title}</h2>
+                        <h3 className="text-lg font-medium text-[#FFD385]">Ingredients:</h3>
+                        <ul className="list-disc ml-5 text-[#333]">
+                            {dish.ingredients.map((ingredient, idx) => (
+                                <li key={idx}>{ingredient}</li>
                             ))}
                         </ul>
-                        <h3>Recipe:</h3>
-                        <ol>
-                            {dish.recipe.map((step, i) => (
-                                <li key={i}>{step}</li>
+                        <h3 className="text-lg font-medium text-[#FFAAA6] mt-3">Recipe:</h3>
+                        <ol className="list-decimal ml-5 text-[#333]">
+                            {dish.recipe.map((step, idx) => (
+                                <li key={idx}>{step}</li>
                             ))}
                         </ol>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
 
-export default MainDishes;
+export default MainDishesPage;
