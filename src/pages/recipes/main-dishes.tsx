@@ -275,7 +275,8 @@ const MainDishes = () => {
     ]
   };
 
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
 
   return (
     <div style={{ backgroundColor: "#DCEDC2", padding: "20px" }}>
@@ -287,12 +288,13 @@ const MainDishes = () => {
             <div key={index}>
               <button
                 style={{ width: "100%", textAlign: "left", padding: "10px", backgroundColor: "#FFD385", border: "none", cursor: "pointer", margin: "5px 0" }}
-                onClick={() => setOpenDropdown(prevState => {
-                    if (prevState === index) {
-                      return null;
-                    }
-                    return index;
-                  })}
+                onClick={() =>
+                    setOpenDropdown((prevState: number | null) =>
+                      prevState === index ? null : index
+                    )
+                  }
+                  
+
                   
                   
 
