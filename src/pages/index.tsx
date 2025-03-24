@@ -5,9 +5,9 @@ import Link from "next/link";
 // Home Component
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center relative">
-      {/* Background Splash */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white opacity-20 via-transparent to-transparent z-0"></div>
+    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center relative overflow-hidden">
+      {/* Background Splash - Adding gradient animation */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FF4C5B] via-[#FF6F74] to-[#FF8C94] opacity-20 animate-gradient-y z-0"></div>
 
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10 border-b-8 border-[#FF8C94] hover:border-[#FFAAA6] transition duration-300">
@@ -136,13 +136,13 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
         {title}
       </button>
       {isOpen && (
-        <div className="absolute bg-white shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700 transform hover:scale-105 transition duration-500">
+        <div className="absolute bg-gradient-to-r from-[#FF4C5B] to-[#FF8C94] shadow-lg rounded-lg mt-0 p-4 w-40 text-gray-700 transform hover:scale-105 transition duration-500">
           <ul>
             {options.map((option, index) => (
               <li key={index}>
                 {/* Link for Main Dishes */}
                 <Link href={option === "Main Dishes" ? "/recipes/main-dishes" : "#"}>
-                  <span className="block px-4 py-2 hover:text-[#FF8C94]">
+                  <span className="block px-4 py-2 hover:text-[#FF8C94] text-white">
                     {option}
                   </span>
                 </Link>
