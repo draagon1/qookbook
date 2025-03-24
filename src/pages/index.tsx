@@ -5,7 +5,7 @@ import Link from "next/link";
 // Home Component
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#A8E6CE] to-[#FFD385] text-gray-800 font-playfair flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-r from-[#93163e] to-[#541212] text-[#88d499] font-playfair flex flex-col items-center">
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
         {/* Logo Section */}
@@ -13,14 +13,14 @@ export default function Home() {
           <Image
             src="/images/logo.jpg" // Replace with your logo image path
             alt="Qookbook Logo"
-            width={100} // Adjust the width as needed
-            height={50} // Adjust the height as needed
+            width={150} // Increased logo size by 1.5x
+            height={75} // Increased logo size by 1.5x
             className="cursor-pointer"
           />
         </Link>
 
         {/* Navigation Menu */}
-        <div className="flex space-x-12 text-gray-700 text-lg">
+        <div className="flex space-x-10 text-[#88d499] text-lg"> {/* Adjusted dropdown to be more left */}
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
           <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
@@ -31,10 +31,10 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="mt-24 text-center max-w-4xl p-8">
-        <h2 className="text-6xl font-extrabold leading-tight">
+        <h2 className="text-6xl font-extrabold leading-tight text-black">
           Explore Global Flavors, Crafted with Locally Sourced Ingredients
         </h2>
-        <p className="text-2xl mt-4">
+        <p className="text-2xl mt-4 text-black">
           Bringing fresh, locally sourced ingredients to your kitchen with love.
         </p>
       </section>
@@ -43,12 +43,12 @@ export default function Home() {
       <div className="mt-16 flex flex-col md:flex-row items-center max-w-6xl w-full gap-12">
         {/* Text Content */}
         <div className="text-2xl leading-relaxed p-8 bg-white shadow-lg rounded-lg flex-1">
-          <h3 className="text-4xl font-semibold mb-4">Why Choose Local Ingredients?</h3>
-          <p>
+          <h3 className="text-4xl font-semibold mb-4 text-black">Why Choose Local Ingredients?</h3>
+          <p className="text-black">
             Locally sourced ingredients offer unparalleled freshness and flavor while supporting small businesses and reducing environmental impact. Every meal tells a story of community and sustainability.
           </p>
-          <h3 className="text-4xl font-semibold mt-8">Our Mission</h3>
-          <p>
+          <h3 className="text-4xl font-semibold mt-8 text-black">Our Mission</h3>
+          <p className="text-black">
             Qookbook is a community-driven initiative celebrating the essence of home-cooked meals, connecting food lovers with sustainable sources and supporting local businesses to make the world taste better.
           </p>
         </div>
@@ -129,7 +129,7 @@ function Dropdown({ title, options }: { title: string; options: string[] }) {
         setClickedOpen((prev) => !prev);
       }}
     >
-      <button className="text-xl font-semibold px-4 py-2 hover:text-blue-500 cursor-pointer focus:outline-none">
+      <button className="text-xl font-semibold px-4 py-2 hover:text-[#FF8C94] cursor-pointer focus:outline-none">
         {title}
       </button>
       {isOpen && (
