@@ -4,10 +4,50 @@ import Link from "next/link";
 
 // Home Component
 export default function Home() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMoving, setIsMoving] = useState(false);
+  const lineRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+      setIsMoving(true);
+    };
+
+    const handleMouseStop = () => {
+      setIsMoving(false);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseStop);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseStop);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (lineRef.current && isMoving) {
+      lineRef.current.style.left = `${mousePosition.x}px`;
+      lineRef.current.style.top = `${mousePosition.y}px`;
+    }
+  }, [mousePosition, isMoving]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#93163e] to-[#FF4C5B] text-[#88d499] font-playfair flex flex-col items-center relative overflow-hidden">
       {/* Background Splash - Adding gradient animation */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#FF4C5B] via-[#FF6F74] to-[#FF8C94] opacity-20 animate-gradient-y z-0"></div>
+
+      {/* Cursor Line */}
+      <div
+        ref={lineRef}
+        className="absolute w-[2px] h-[2px] bg-white opacity-0 transition-all duration-300 ease-out"
+        style={{
+          transform: "translate(-50%, -50%)",
+          transition: "opacity 0.5s ease-out, transform 0.3s ease-out",
+          opacity: isMoving ? 1 : 0,
+        }}
+      ></div>
 
       {/* Navigation Bar */}
       <nav className="w-full bg-white shadow-md py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 z-20 border-b-8 border-[#FF8C94] hover:border-[#FFAAA6] transition duration-300">
