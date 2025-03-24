@@ -27,30 +27,14 @@ export default function Home() {
           <input
             type="text"
             placeholder="Search..."
-            className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
+            className="w-64 h-10 pl-8 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
           />
-          <span className="absolute left-4 top-3 text-gray-600 text-xl transform translate-y-[-2px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-4.35-4.35"
-              />
-            </svg>
-          </span>
         </div>
 
         {/* Navigation Menu */}
-        <div className="flex space-x-8 text-[#88d499] text-lg">
+        <div className="flex space-x-8 text-[#88d499] text-lg" style={{ marginLeft: "10px" }}>
           <Dropdown title="About" options={["Mission", "Vision", "Story"]} />
-          <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices"]} />
+          <Dropdown title="Ingredients" options={["Fruits", "Vegetables", "Spices", "Meats"]} />
           <Dropdown title="Recipes" options={["Main Dishes", "Side Dishes", "Desserts"]} />
           <Dropdown title="Sources" options={["Farmers", "Markets", "Suppliers"]} />
           <Dropdown title="News" options={["Updates", "Events", "Articles"]} />
