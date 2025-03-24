@@ -27,11 +27,24 @@ export default function Home() {
           <input
             type="text"
             placeholder="Search..."
-            className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#FF8C94] text-white placeholder-white border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
+            className="w-64 h-10 pl-12 pr-4 rounded-full bg-[#A8E6CE] text-black placeholder-gray-600 border-none focus:outline-none transform transition duration-300 ease-in-out hover:scale-105"
             disabled
           />
-          <span className="absolute left-4 top-3 text-white text-xl">
-            🔍
+          <span className="absolute left-4 top-3 text-gray-600 text-xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="h-6 w-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-4.35-4.35"
+              />
+            </svg>
           </span>
         </div>
 
