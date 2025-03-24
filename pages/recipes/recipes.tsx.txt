@@ -1,0 +1,18 @@
+import React from 'react';
+import Link from 'next/link';
+
+const Recipes: React.FC = () => {
+    return (
+        <div>
+            <h1>Recipes Overview</h1>
+            <ul>
+                <li>
+                    <Link href="/recipes/main-dishes">See Main Dishes</Link>
+                </li>
+                {/* You can add more links to other recipes here */}
+            </ul>
+        </div>
+    );
+};
+
+export default Recipes;
