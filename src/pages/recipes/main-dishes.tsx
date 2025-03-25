@@ -292,10 +292,62 @@ const MainDishes = () => {
 
   return (
     <div style={{ backgroundColor: "#f4f4f9", padding: "20px" }}>
-      <h1 style={{ color: "#333333", textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)", fontSize: "4em" }}>Main Dishes</h1>
+      {/* Navbar with Dropdown, Search Bar, and Logo */}
+      <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <a href="/" style={{ textDecoration: "none" }}>
+            <img src="/images/logo.png" alt="Qookbook Logo" style={{ width: "50px", height: "50px" }} />
+          </a>
+          <h1 style={{ color: "#333333", textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)", fontSize: "2em", marginLeft: "10px" }}>
+            Qookbook
+          </h1>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <input
+            type="text"
+            placeholder="Search recipes..."
+            style={{
+              padding: "10px",
+              fontSize: "1.2em",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+              marginRight: "20px",
+              width: "300px"
+            }}
+          />
+          <button
+            style={{
+              padding: "10px 15px",
+              fontSize: "1.2em",
+              backgroundColor: "#FF6F61",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer"
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </header>
+
+      {/* Main Dishes Section */}
+      <h2 style={{ color: "#2C3E50", fontSize: "3em", textAlign: "center", marginBottom: "40px" }}>Main Dishes</h2>
+
       {Object.entries(categories).map(([category, dishes]) => (
         <div key={category}>
-          <h2 style={{ borderBottom: "3px solid #FF6F61", paddingBottom: "5px", color: "#2C3E50", textShadow: "1px 1px 3px rgba(0, 0, 0, 0.2)", fontSize: "2.5em" }}>{category}</h2>
+          <h3
+            style={{
+              borderBottom: "3px solid #FF6F61",
+              paddingBottom: "5px",
+              color: "#2C3E50",
+              fontSize: "2.5em",
+              marginBottom: "20px"
+            }}
+          >
+            {category}
+          </h3>
+
           {dishes.map((dish, index) => (
             <div key={index}>
               <button
@@ -309,14 +361,23 @@ const MainDishes = () => {
                   margin: "10px 0",
                   color: "#ffffff",
                   fontSize: "1.5em",
-                  fontWeight: "bold",
+                  fontWeight: "bold"
                 }}
                 onClick={() => setOpenDropdown(openDropdown === index ? null : index)}
               >
                 {dish.name}
               </button>
               {openDropdown === index && (
-                <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", padding: "15px", backgroundColor: "#ffffff", border: "1px solid #ddd" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "20px",
+                    padding: "15px",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #ddd"
+                  }}
+                >
                   {/* Text Section (Ingredients & Recipe) */}
                   <div style={{ flex: 1 }}>
                     <h3 style={{ fontSize: "1.8em", color: "#2C3E50" }}>Ingredients:</h3>
@@ -334,31 +395,13 @@ const MainDishes = () => {
                   </div>
 
                   {/* Image Section */}
-                  {dish.image && (
-                    <div
-                      style={{
-                        width: "500px", // You can adjust the width of the image
-                        height: "500px", // Make the height equal to width for a square shape
-                        overflow: "hidden",
-                        borderRadius: "10px",
-                        border: "2px solid #ddd",
-                        position: "relative",
-                        boxSizing: "border-box",
-                      }}
-                    >
-                      <img
-                        src={dish.image}
-                        alt={dish.name}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover", // Ensure the image covers the container without stretching
-                          transition: "transform 0.3s ease-in-out",
-                        }}
-                        className="imageHoverEffect"
-                      />
-                    </div>
-                  )}
+                  <div style={{ flex: 1, maxWidth: "400px" }}>
+                    <img
+                      src={dish.image}
+                      alt={dish.name}
+                      style={{ width: "100%", height: "auto", borderRadius: "10px" }}
+                    />
+                  </div>
                 </div>
               )}
             </div>
