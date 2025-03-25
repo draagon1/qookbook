@@ -288,16 +288,25 @@ const MainDishes = () => {
     ]
   };
 
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  import Link from 'next/link';
+  import Image from 'next/image';
+  
+  const MainDishes = ({ categories, openDropdown, setOpenDropdown }) => {
 
   return (
     <div style={{ backgroundColor: "#f4f4f9", padding: "20px" }}>
       {/* Navbar with Dropdown, Search Bar, and Logo */}
       <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <a href="/" style={{ textDecoration: "none" }}>
-            <img src="/images/logo.png" alt="Qookbook Logo" style={{ width: "50px", height: "50px" }} />
-          </a>
+          <Link href="/" passHref>
+            <Image
+              src="/images/logo.png"
+              alt="Qookbook Logo"
+              width={50}
+              height={50}
+              style={{ cursor: "pointer" }}
+            />
+          </Link>
           <h1 style={{ color: "#333333", textShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)", fontSize: "2em", marginLeft: "10px" }}>
             Qookbook
           </h1>
@@ -396,9 +405,11 @@ const MainDishes = () => {
 
                   {/* Image Section */}
                   <div style={{ flex: 1, maxWidth: "400px" }}>
-                    <img
+                    <Image
                       src={dish.image}
                       alt={dish.name}
+                      width={400}
+                      height={300}
                       style={{ width: "100%", height: "auto", borderRadius: "10px" }}
                     />
                   </div>
