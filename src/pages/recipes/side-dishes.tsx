@@ -216,4 +216,3 @@ const SideDishes = () => {
 };
 
 export default SideDishes;
-
