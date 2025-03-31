@@ -370,3 +370,4 @@ const MainDishes = () => {
 };
 
 export default MainDishes;
+
